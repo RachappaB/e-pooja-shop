@@ -1,64 +1,121 @@
+
+
+
 // @flow strict
+import React from 'react'
+import { useState,useContext } from 'react';
+import { GlobalState } from './Global';
+import axios from 'axios'
 
-import * as React from 'react';
-import data from './todaypooja';
-
+import Button from 'react-bootstrap/Button';
 function Home() {
-    return (
- 
-<div className='row     p-3  m-2 text-center  '>
+  const state = useContext(GlobalState)
+  const [order,setorder]  = state.userAPI.order
+  const [token] = state.token
+  const done  = async (val) =>{
+    alert("Thank you for your service")
 
+    await axios.post('/prist/done',{val},{   headers: {Authorization: token}});
+    window.location.href ="/"
+  }
+
+
+  const notdone   = async (val) =>{
+    alert("Are You sure to cancel this pooja")
+    await axios.post('/prist/notdone',{val},{   headers: {Authorization: token}});
+    window.location.href ="/"
+  }
+
+
+
+ // var l ={name,lastname,age,phone,add,zip,poojname,poojaprize,poojaurl,"email":customer.email,date,time}
+
+if(order.length !== 0)
 {
-  data.map(val =>
+  return (
+<>
+
+<div className='row     p-3  m-2 text-center  '>
+{
+  order.map(val=>
       
-    <div key={val.id}  
-     className='  hover_box container-fluid   border  row  p-1 mt-5  text-center' >
-    <div className=' row container-fluid'>
+    <div  className='  hover_box container-fluid   border  row  p-1 mt-5  text-center' >
+    <div className=' row container-fluid bg-secondary'>
         <div className='col-sm-10 col-md-5 col-lg-5 '>
-            <img src={val.img} width="250px" height="250px"/>
+            <img src={val.poojaurl} width="250px" height="250px"/>
+            <br/>
+            <h1>Product : {val.poojname}</h1>
+            <h1></h1>
         </div>
         <div className='col-sm-10 col-md-5 col-lg-5 '>
-        <h1
-        >
+        <h1>
+        customer  : 
         {
-          val.Custname
+          val.name+" "+val.lastname
         }
-
       </h1>
-      <h4>
-        
-         ₹{
-          val.Price
-        } 
-      </h4>
-      <p>Pooja Name:-{
-          val.PoojaName 
-        } </p>
-        <p>Location:-{
-          val.Location 
-        } </p>
-      <p>Time:-{
-          val.Time 
-        } </p>
-        <p>Date:-{
-
-        val.Date
-        }  </p>
-         <div class="btn-group" role="group" aria-label="Basic example">
-         <button type="button" class="btn btn-secondary"> <h3>Done</h3></button>
-         <button type="button" class="btn btn-secondary"><h3>Not Done</h3></button>
-         <button type="button" class="btn btn-secondary "><h3>Not Attended</h3> </button>
-         </div>
-           
-        </div>
-        </div>
-        </div>
+      <h1>
+        time  : 
+        {
+          val.time
+        }
+      </h1>
+      <h1>
+        date  : 
+        {
+          val.date
+        }
+      </h1>
+      <h1>
+        Pincode  : 
+        {
+          val.zip
+        }
+      </h1>
+      <h1>
+        Address:
+        {
+          val.add
+        }
+      
+      </h1>
     
-    )
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button"  class="btn btn-secondary bg-primary" onClick={()=>{done(val) }}> <h1> Done</h1></button>
+        <button type="button"  class="btn btn-secondary bg-danger"  onClick={()=>{ notdone(val)}} > <h1>Reject </h1></button>
+      </div>
+    
+          </div>
+    </div>
+    <div>
+      </div>
+</div>
+    
+   
+  )
 }
-</div>)
+
+
+</div>
+
+
+ </>)
 }
+else{
+  return (
+    <>
+     <div>
+      <h1 className='bg-primary p-5 text-center'>
+       No Iteam in the order
+      </h1>
+    </div>
 
 
+    
 
+
+    </>
+  )
+}
+}
 export default Home;
