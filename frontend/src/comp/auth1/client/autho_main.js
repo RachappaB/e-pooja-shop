@@ -11,6 +11,8 @@ import Location from './Location';
 import BookPriest from './BookPriest';
 import Product1 from './Product1';
 import {DataProvider} from './Global'
+import Pooja_client from './pooja_confirm'
+
 
 export default function Auth_client_main() {
   return (
@@ -20,6 +22,8 @@ export default function Auth_client_main() {
 <Routes>
   <Route path='/' element={<Home/>}/>
   <Route path='/Pooja' element={<Pooja/>}/>
+  <Route path='/poojaconfirm' element={<Pooja_client/>}/>
+
   <Route path='/Ordrers' element={<Ordrers/>}/>
   <Route path='/Profile' element={<Profile/>}/>
   <Route path='/Edit' element={<Edit_clint/>}/>

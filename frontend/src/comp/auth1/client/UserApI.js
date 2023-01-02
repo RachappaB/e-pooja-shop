@@ -3,6 +3,10 @@ import axios from 'axios'
 
 function UserAPI(token) {
    const [data,setData] = useState([]);
+   const [poojname,setpoojaname] = useState('')
+   const [poojaprize,setpoojaprize] = useState('')
+   const [poojaurl,setpoojaurl] = useState('')
+
    const [name,setname]=useState('')
    const [lastname,setlastname]=useState('')
    const [email,setEmail]=useState('')
@@ -72,11 +76,6 @@ function UserAPI(token) {
   SetSum(new_sum);
 }
 
-
-
-
-
-
     return {
         name:[name,setname],
         lastname:[lastname,setlastname],
@@ -86,8 +85,11 @@ function UserAPI(token) {
         cart:[cart,setCart],
         addCart:addCart,
         update:update,
+        poojaurl:[poojaurl,setpoojaurl],
         cal_sum:cal_sum,
         sum :[sum,SetSum],
+        poojname:[poojname,setpoojaname],
+        poojaprize:[poojaprize,setpoojaprize],
         zip:[zip,setzip],
         add:[add,setadd],
         age:[age,setage],

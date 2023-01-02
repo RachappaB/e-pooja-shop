@@ -11,6 +11,7 @@ import logo from '../../img/logo.png';
 
 
 export default function Pooja() {
+
   return (
        <>
         <div>
@@ -41,8 +42,8 @@ export default function Pooja() {
 
   const [data,setData] = useState(data_list);
   
-  function handle_item(id){
-    alert(id);
+  function handle_item(val){
+    alert(val.id);
   }
   function remove(id){
     const newlist = data.filter((i)=>i.id !== id);
@@ -57,7 +58,7 @@ export default function Pooja() {
 {
   data.map(val =>
     
-    <div key={val.id}  onClick={()=>{handle_item(val.id)
+    <div key={val.id}  onClick={()=>{handle_item(val)
     }} className='  hover_box container-fluid   border  col-sm-10 col-md-4 col-lg-3    text-center' >
     <div className=' container'>
             <img src={val.img} alt=
