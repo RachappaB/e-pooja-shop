@@ -20,6 +20,9 @@ const [email,setemail]= state.userAPI.email
 const [zip,setzip] =state.userAPI.zip
 const [lastname,setlastname] = state.userAPI.lastname
 const [age,setage] = state.userAPI.age
+const [date,setdate] = useState('')
+const [time,settime] = useState('')
+
 const [add,setadd] = state.userAPI.add
   const [r,setr] = useState(true)
   const order =async(val) =>{
@@ -34,7 +37,7 @@ const handleSubmit = async e => {
   alert(poojname)
   e.preventDefault()
   try{
-      await axios.post('/customer/pooja',{name,lastname,email,age,phone,add,zip,add,poojname,poojaprize,poojaurl},{   headers: {Authorization: token}});
+      await axios.post('/customer/pooja',{name,lastname,email,age,phone,add,zip,add,poojname,poojaprize,date,time,poojaurl},{   headers: {Authorization: token}});
       setr(true)
       window.location.href ="/"
 
@@ -165,7 +168,18 @@ if(r)
                     <div className='col-sm-12 col-md-4 mb-3 mt-3'>
                         <input for="address 3. ..." type="address 3. ..." value={zip} onChange={(e) =>setzip(e.target.value)} placeholder='zip' className='form-control' id='address 3. ...' />
                     </div>
+                 
                     <div className="col-md-2"/>
+                    <div className="col-md-2"/>
+                      
+<div className='col-sm-12 col-md-4 mb-3 mt-3'>
+    <input type="time" value={time} onChange={(e) =>settime(e.target.value)} placeholder='date' className='form-control' id='address 3. ...' />
+</div>
+   
+<div className='col-sm-12 col-md-4 mb-3 mt-3'>
+    <input type="date" value={date} onChange={(e) =>setdate(e.target.value)} placeholder='date' className='form-control' id='address 3. ...' />
+</div>
+<div className="col-md-2"/>
                         <button  type='submit' className='container col-sm-12 col-md-6 mb-3 mt-3 bg-success btn btn-outline-warning' >
                             Order
 

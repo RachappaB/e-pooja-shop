@@ -12,15 +12,18 @@ function ShopkeeperLogin() {
     //const navigate = useNavigate();
     const [email, setEmail] = useState('')
     const [password,setPassword] = useState('')
+  
+  
+  
     const handleSubmit = async e => {
         console.log(email)
         console.log(password)
         e.preventDefault()
         try{
-            console.log("Start")
+          //  console.log("Start")
             await localStorage.clear()
             await  axios.post('/shopowner/login',{email,password})
-            console.log("DOne")
+     //       console.log("DOne")
             localStorage.setItem('firstLogin',true)
              localStorage.setItem('shopLogin',true)
             window.location.href ="/"

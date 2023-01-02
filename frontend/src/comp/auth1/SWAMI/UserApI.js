@@ -12,6 +12,8 @@ function UserAPI(token) {
   const [age,setage] = useState('')
   const [ gst,setgst] = useState('')
   const [bank ,setbank] = useState('')
+  const [order,setorder] = useState([])
+
   const [ifsc,setifsc] = useState('')
     useEffect(() =>{
         if(token){
@@ -31,6 +33,7 @@ function UserAPI(token) {
                          setbank(res.data.user.bank)
                          setgst(res.data.user.gst)
                          setage(res.data.user.age)
+                         setorder(res.data.user.order)
 
 
     //                     try {
@@ -62,6 +65,8 @@ function UserAPI(token) {
         bank:[bank,setbank],
         ifsc:[ifsc,setifsc],
         age:[age,setage],
+        order:[order,setorder]
+
     }
 }
 
