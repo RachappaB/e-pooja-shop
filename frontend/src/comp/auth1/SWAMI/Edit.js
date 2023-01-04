@@ -90,8 +90,9 @@ function Edit_swami() {
                         <div className="col-md-2"/>
 
 
+
 <div className='col-sm-12 col-md-8 mb-3 mt-3'>
-    <input  placeholder='Address 1  ' value={zip} onChange={(e) =>setzip(e.target.value)} type="text" className='form-control' id='email' />
+    <input  placeholder='Pin Code  ' value={zip} onChange={(e) =>setzip(e.target.value)} type="text" className='form-control' id='email' />
 </div>
 <div className="col-md-2"/>
                       

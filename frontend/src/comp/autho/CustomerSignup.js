@@ -48,11 +48,11 @@ function CustomerSignup() {
             <h4 className= 'text-white'>Create Your  Account</h4>
             <form onSubmit={handleSubmit}>
                 <p>
-                    <label>First Name</label><br/>
+                    <label>First Name </label> <br/>
                     <input type="text" required 
                     name="fname"
                     value={name}
-                    onChange={(e)=>setname(e.target.value)}/>/>
+                    onChange={(e)=>setname(e.target.value)}/>
                 </p>
                 <p>
                     <label>Last Name</label><br/>

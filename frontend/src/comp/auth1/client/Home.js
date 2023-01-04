@@ -38,16 +38,15 @@ function Home() {
         }
       </h6>
       <p>
-        
          ₹{
-          val.Price
+          val.prize
         } 
       </p>
 
     </div>
-    <h4>
+    <h6>
       {val.about}
-    </h4>
+    </h6>
 
     <div>
       <button className='hover_box btn btn-outline-warning'>

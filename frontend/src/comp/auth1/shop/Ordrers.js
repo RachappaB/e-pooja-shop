@@ -9,16 +9,46 @@ function Home() {
   const state = useContext(GlobalState)
   const [order,setorder]  = state.userAPI.order
   const [token] = state.token
-  const done  = async (val) =>{
-    
+  const done   = async (val) =>{
 
+
+
+    try{
+      console.log("err")
+      alert("")
+      await axios.post('/shopowner/done',{val},{   headers: {Authorization: token}});
+      window.location.href ="/"
+
+
+    }catch(err)
+    {
+        //alert(err.response.data.msg)
+        alert(err)
+        window.location.href ="/"
+
+    }
   }
 
 
-  const reject   = async (val) =>{
+
+  const notdone   = async (val) =>{
 
 
 
+    try{
+      console.log("err")
+      alert("Are You sure to cancel this pooja")
+      await axios.post('/shopowner/notdone',{val},{   headers: {Authorization: token}});
+      window.location.href ="/"
+
+
+    }catch(err)
+    {
+        //alert(err.response.data.msg)
+        alert(err)
+        window.location.href ="/"
+
+    }
   }
 
 
@@ -70,8 +100,8 @@ if(order.length !== 0)
         } 
       </h3>
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button type="button"  class="btn btn-secondary bg-primary"> <h1> Done</h1></button>
-        <button type="button"  class="btn btn-secondary bg-danger" > <h1>Reject </h1></button>
+        <button type="button"  class="btn btn-secondary bg-primary" onClick={()=>{done(val)}}> <h1> Done</h1></button>
+        <button type="button"  class="btn btn-secondary bg-danger" onClick={()=>{notdone(val)}} > <h1>Reject </h1></button>
       </div>
     
           </div>

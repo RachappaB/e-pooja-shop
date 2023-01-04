@@ -12,15 +12,52 @@ function Home() {
   const cal_sum = state.userAPI.cal_sum
   const [token] = state.token
   const [sum,SetSum] = state.userAPI.sum
+ cal_sum()
+  var today =   new Date()
+  var dd = today.getDate();
+  var mm = today.getMonth() + 1;
 
+  var yyyy = today.getFullYear();
+  if (dd < 10) {
+      dd = '0' + dd;
+  }
+  if (mm < 10) {
+      mm = '0' + mm;
+  }
+  var today = dd + '/' + mm + '/' + yyyy;
+
+
+
+
+
+  const handleopenrazorpaysite=async(data)=>{
+    var options = {
+      key: "rzp_test_XNdaPboetoEHnm", 
+      amount:Number(data.amount) , 
+      currency: "INR",
+      name: "E-pooja samagari",
+      description: "Test Transaction",
+      image: "https://www.vecteezy.com/free-vector/community-logo",
+      order_id:data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      handler:function (response){
+       axios.get('/customer/order',  {headers: {Authorization: token}})
+      alert("order is placed")
+      window.location.href ="/"
+       
+      }
+    }
+    var rzp1 = new window.Razorpay(options);
+    rzp1.open()
+  }
 
 
   const order = async () => {
     alert("Your Order is placing ")
     try{
-      await axios.get('/customer/order',  {headers: {Authorization: token}})
-      alert("order is placed")
-      window.location.href ="/"
+      await  axios.post('/customer/orders',{sum}).then((res)=>{
+        handleopenrazorpaysite(res.data.order)
+  
+      })
 
     }catch(err)
     {
@@ -44,7 +81,7 @@ function add(id)
         i.size = i.size+ 1;
 
       }else{
-        alert("Iteam size is more than 5")
+        alert("Item size is more than 5")
       }
 
 
@@ -154,7 +191,7 @@ if(cart.length !== 0)
       <h1 className='bg-primary p-5 text-center'>
         sum = {sum}
         <br/>
-        Date of Delivary: {Date()}
+        Date of Delivary: {today}
         <br/>
         <button  onClick={()=>order()}><h1>
           Order Now</h1></button>
@@ -168,7 +205,7 @@ else{
     <>
      <div>
       <h1 className='bg-primary p-5 text-center'>
-       No Iteam in the cart
+       No Item in the cart
       </h1>
     </div>
 
